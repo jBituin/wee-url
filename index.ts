@@ -13,7 +13,7 @@ server.use(morgan('common'));
 server.use(express.json());
 server.use(express.static('./public'));
 
-server.use('/url', urlRouter);
+server.use('/', urlRouter);
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
