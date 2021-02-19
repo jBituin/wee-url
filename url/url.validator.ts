@@ -1,12 +1,12 @@
-import yup from 'yup';
+import { object, string } from 'yup';
 import IUrl from './url.interface';
 
-const urlSchema = yup.object().shape({
-  slug: yup
-    .string()
+const urlSchema = object().shape({
+  slug: string()
     .trim()
+    .optional()
     .matches(/^[\w\-]+$/i),
-  url: yup.string().trim().url().required(),
+  url: string().trim().url().required(),
 });
 
 const urlDataValidate = async (payload: IUrl) => {
