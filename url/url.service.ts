@@ -7,11 +7,11 @@ import validateUrlDTO from './url.validator';
 export default {
   async getUrl(id: string) {
     try {
-      const url = await UrlModel.findOne({ slug: id });
-      if (!url) {
+      const data: IUrl = await UrlModel.findOne({ slug: id });
+      if (!data) {
         throw new Error(ERRORS.URL_NOT_FOUND);
       }
-      return url;
+      return data.url;
     } catch (error) {
       throw new Error(ERRORS.URL_NOT_FOUND);
     }
@@ -32,6 +32,8 @@ export default {
       slug = slug.toLowerCase();
       const newUrl = await UrlModel.insert({ slug, url });
       return newUrl;
-    } catch (error) {}
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 };
