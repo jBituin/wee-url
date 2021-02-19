@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
+import path from 'path';
 import UrlService from './url.service';
+
+const notFoundPath = path.join(__dirname, '../public/404.html');
 
 export default {
   helloWorld(req: Request, res: Response) {
@@ -11,6 +14,7 @@ export default {
       const result = await UrlService.getUrl(id);
       res.redirect(result);
     } catch (error) {
+      res.status(404).sendFile(notFoundPath);
       next(error);
     }
   },
