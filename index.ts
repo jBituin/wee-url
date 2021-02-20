@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import urlRouter from './url/url.route';
-
+import setContentSecurityPolicy from './setContentSecurityPolicy';
 require('dotenv').config();
 
 const server = express();
@@ -11,8 +11,9 @@ server.enable('trust proxy');
 server.use(helmet());
 server.use(morgan('common'));
 server.use(express.json());
-server.use(express.static('./public'));
 
+server.use(setContentSecurityPolicy);
+server.use(express.static('./public'));
 server.use('/', urlRouter);
 
 const PORT = process.env.PORT || 3001;
