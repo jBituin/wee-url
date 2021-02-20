@@ -6,7 +6,6 @@ import urlController from './url.controller';
 
 const router = express.Router();
 
-router.get('/', urlController.helloWorld);
 router.post(
   '/',
   slowDown({ windowMs: 10 * 1000, delayAfter: 1, delayMs: 500 }),

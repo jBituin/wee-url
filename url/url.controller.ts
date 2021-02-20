@@ -5,9 +5,6 @@ import UrlService from './url.service';
 const notFoundPath = path.join(__dirname, '../public/404.html');
 
 export default {
-  helloWorld(req: Request, res: Response) {
-    res.send('Hello World!');
-  },
   async getUrl(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
