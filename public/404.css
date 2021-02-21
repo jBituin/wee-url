@@ -15,7 +15,11 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #000000;
+  background: #093028;
+  background: -webkit-linear-gradient(45deg, #093028, #237a57);
+  background: -o-linear-gradient(45deg, #093028, #237a57);
+  background: -moz-linear-gradient(45deg, #093028, #237a57);
+  background: linear-gradient(45deg, #093028, #237a57);
 }
 
 .illustration {
@@ -31,7 +35,7 @@ body {
 
 .not-found {
   margin: 1rem 0;
-  color: teal;
+  color: white;
   font-size: 3rem;
   font-weight: normal;
 }
@@ -39,7 +43,7 @@ body {
 .homepage {
   display: flex;
   align-items: center;
-  color: cyan;
+  color: lime;
   font-size: 1.5rem;
   justify-content: center;
 }
