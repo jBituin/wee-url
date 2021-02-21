@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>wee-url</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="title">Wee-URL</h1>
+    </header>
+    <main id="app">
+      <form class="form" v-if="formVisible" @submit.prevent="createUrl">
+        <div v-if="error" class="error">Error: {{errorMessage}}</div>
+        <input
+          class="input"
+          type="text"
+          v-model="url"
+          name="url"
+          id="url"
+          placeholder="Enter a url"
+        />
+        <input
+          class="input"
+          type="text"
+          v-model="slug"
+          name="slug"
+          id="slug"
+          placeholder="Enter a slug"
+        />
+        <button type="submit" class="button create">Create</button>
+      </form>
+      <div class="result" v-if="created">
+        <p class="created">
+          Your short url is: <a :href="created">{{created}}</a>
+        </p>
+        <button class="button try-again" @click.prevent="tryAgain">
+          Try Again
+        </button>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
