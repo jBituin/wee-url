@@ -3,6 +3,7 @@ import IUrl from './url.interface';
 import { ERRORS } from '../errors';
 import { nanoid } from 'nanoid';
 import validateUrlDTO from './url.validator';
+import { ValidationError } from 'yup';
 
 export default {
   async getUrl(id: string) {
@@ -19,21 +20,24 @@ export default {
 
   async createTinyUrl(urlDTO: IUrl) {
     let { slug, url } = urlDTO;
-    await validateUrlDTO(urlDTO);
     try {
+      await validateUrlDTO(urlDTO);
       if (!slug) {
         slug = nanoid(6);
       } else {
         const isExisting = await UrlModel.findOne({ slug });
         if (isExisting) {
-          throw new Error(ERRORS.SLUG_IN_USE);
+          throw Error(ERRORS.SLUG_IN_USE);
         }
       }
       slug = slug.toLowerCase();
-      const newUrl = await UrlModel.insert({ slug, url });
-      return newUrl;
+      return await UrlModel.insert({ slug, url });
     } catch (error) {
-      throw new Error(error);
+      if (error instanceof ValidationError) {
+        throw new Error(ERRORS.INVALID_URL);
+      } else {
+        throw error;
+      }
     }
   },
 };
