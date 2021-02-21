@@ -12,7 +12,6 @@ export default {
       res.redirect(result);
     } catch (error) {
       res.status(404).sendFile(notFoundPath);
-      next(error);
     }
   },
   async createTinyUrl(req: Request, res: Response, next: NextFunction) {
