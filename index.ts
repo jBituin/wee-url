@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import urlRouter from './url/url.route';
 import setContentSecurityPolicy from './setContentSecurityPolicy';
+import errorHandler from './errorHandler';
+
 require('dotenv').config();
 
 const server = express();
@@ -15,6 +17,7 @@ server.use(express.json());
 server.use(setContentSecurityPolicy);
 server.use(express.static('./public'));
 server.use('/', urlRouter);
+server.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
