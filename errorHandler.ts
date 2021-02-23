@@ -1,13 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 
-interface Error {
+export interface ResponseError extends Error {
   status?: number;
-  message?: string;
   stack?: string;
 }
 
 export default function (
-  error: Error,
+  error: ResponseError,
   req: Request,
   res: Response,
   next: NextFunction
