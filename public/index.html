@@ -12,7 +12,7 @@
     </header>
     <main id="app">
       <form class="form" v-if="formVisible" @submit.prevent="createUrl">
-        <div v-if="error" class="error">Error: {{errorMessage}}</div>
+        <div v-if="errorMessage" class="error">Error: {{errorMessage}}</div>
         <input
           class="input"
           type="text"
