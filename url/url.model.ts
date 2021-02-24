@@ -1,6 +1,16 @@
 import { db as dbConnection } from '../db';
+import { FilterQuery } from 'mongodb';
 
-const urls = dbConnection.get('urls');
-urls.createIndex({ slug: 1 }, { unique: true });
+const url = dbConnection.get('urls');
+url.createIndex({ slug: 1 }, { unique: true });
+export default {
+  ...url,
 
-export default urls;
+  findOne(args: FilterQuery<any> | undefined) {
+    return url.findOne(args);
+  },
+
+  insert(args: any) {
+    return url.insert(args);
+  },
+};
