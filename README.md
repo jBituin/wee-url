@@ -38,7 +38,7 @@ $ git clone https://github.com/jBituin/wee-url
 #### `Step 2` - cd in the repo
 
 ```bash
-$ cd college-app
+$ cd wee-url
 ```
 
 #### `Step 3` - run a mongodb server
