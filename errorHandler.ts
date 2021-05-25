@@ -7,9 +7,9 @@ export interface ResponseError extends Error {
 
 export default function (
   error: ResponseError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) {
   if (error.status) {
     res.status(error.status);
